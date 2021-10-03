@@ -1,0 +1,14 @@
+
+ Performance counter stats for './matrix 1000 lu':
+
+    19,757,194,812      L1-dcache-loads:u                                           
+     1,313,212,629      L1-dcache-load-misses:u   #    6.65% of all L1-dcache accesses
+       253,302,024      branch-instructions:u                                       
+         1,010,461      branch-misses:u           #    0.40% of all branches        
+
+      11.295386675 seconds time elapsed
+
+      11.156145000 seconds user
+       0.026389000 seconds sys
+
+

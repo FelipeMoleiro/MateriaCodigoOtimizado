@@ -1,0 +1,14 @@
+
+ Performance counter stats for './matrix 100 li':
+
+        22,118,895      L1-dcache-loads:u                                           
+            67,763      L1-dcache-load-misses:u   #    0.31% of all L1-dcache accesses
+         1,084,992      branch-instructions:u                                       
+            12,434      branch-misses:u           #    1.15% of all branches        
+
+       0.005566125 seconds time elapsed
+
+       0.005557000 seconds user
+       0.000000000 seconds sys
+
+
