@@ -4,6 +4,8 @@
 #include <fstream>
 #include <sstream>
 #include <string>
+#include <vector>
+#include <algorithm>
 
 namespace fs = std::filesystem;
 
@@ -23,6 +25,8 @@ std::string get_number(std::string line){
 int main(){
     std::ofstream outfile("result.csv");
 
+    std::vector<std::string> finalfile;
+
     std::string path = "./results";
     for (const auto & entry : fs::directory_iterator(path)){
         std::ifstream infile(entry.path());
@@ -31,23 +35,31 @@ int main(){
         std::getline(infile, line);
         std::getline(infile, line);
 
-        outfile << entry.path();
+        std::string finalLine;
+
+        finalLine.append(entry.path());
         std::getline(infile, line); //l1chace
-        outfile << ';' << get_number(line);
+        finalLine.append(";" + get_number(line));
         std::getline(infile, line); //l1chacemiss
-        outfile << ';' << get_number(line);
+        finalLine.append(";" + get_number(line));
         std::getline(infile, line); //branch
-        outfile << ';' << get_number(line);
+        finalLine.append(";" + get_number(line));
         std::getline(infile, line); //branchmiss
-        outfile << ';' << get_number(line);
+        finalLine.append(";" + get_number(line));
 
         std::getline(infile, line); //nothing
 
         std::getline(infile, line); //seconds
-        outfile << ';' << get_number(line) << '\n';
+        finalLine.append(";" + get_number(line) + "\n");
 
+        finalfile.push_back(finalLine);
     }
-        
+
+    sort(finalfile.begin(),finalfile.end());
+    
+    for(uint i=0;i<finalfile.size();i++){
+        outfile << finalfile[i];
+    }
 
     return 0;
 }
