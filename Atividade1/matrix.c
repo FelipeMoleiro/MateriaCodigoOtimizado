@@ -79,7 +79,7 @@ int main(int argc,char* argv[]){
     */
    
    
-    if(!strcmp("li",argv[2])){  //Loop Interchand
+    if(!strcmp("li",argv[2])){  //Loop Interchange
 
         for(int i=0;i<matrix_size;i++){
             for(int k=0;k<matrix_size;k++){
