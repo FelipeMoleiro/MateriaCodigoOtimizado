@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-void insertion_sort(int* vet,int n){
+void bubble_sort(int* vet,int n){
     for(int i=0;i<n;i++){
         for(int j=n-1;j>i;j--){
             if(vet[j] < vet[j-1]){
@@ -116,27 +116,43 @@ void clean_cache()
     dummy_buffer[i] += 1;
 }
 
+void cpy_vet(int* vet1,int* vet2,int n){
+    for(int i=0;i<n;i++){
+        vet1[i] = vet2[i];
+    }
+}
 
 int main(){
     srand(42);
 
-    const int n = 30;
-    int vet[n];
+    const int n = 1000000;
+    int* vet = (int*)malloc(sizeof(int)*n);
 
     for(int i=0;i<n;i++){
-        vet[i] = rand()%100;
+        vet[i] = rand()%1000;
     }
 
-    print_vet(vet,n);
+    int* unord = (int*)malloc(sizeof(int)*n);;
 
-    //insertion_sort(vet,n);
-    //merge_sort(vet,0,n-1);
-    //counting_sort(vet,n);
-    quicksort(vet,0,n-1);
+    cpy_vet(unord,vet,n);
+    bubble_sort(unord,n);
+    clean_cache();
+
+    cpy_vet(unord,vet,n);
+    merge_sort(unord,0,n-1);
+    clean_cache();
+
+    cpy_vet(unord,vet,n);
+    counting_sort(unord,n);
+    clean_cache();
+
+    cpy_vet(unord,vet,n);
+    quicksort(unord,0,n-1);
 
 
-    print_vet(vet,n);
-
+    //print_vet(vet,n);
+    free(vet);
+    free(unord);
 
     return 0;
 }
