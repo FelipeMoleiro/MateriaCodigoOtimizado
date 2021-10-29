@@ -7,7 +7,7 @@ compile:
 	gcc $(source_name) -pg -o $(binary_name)
 
 run:
-	./$(binary_name)
+	./$(binary_name) 20000000
 
 gprof:
 	gprof $(binary_name) gmon.out > saida_gprof.txt

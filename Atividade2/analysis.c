@@ -1,17 +1,77 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-void bubble_sort(int* vet,int n){
-    for(int i=0;i<n;i++){
-        for(int j=n-1;j>i;j--){
-            if(vet[j] < vet[j-1]){
-                int tmp = vet[j];
-                vet[j] = vet[j-1];
-                vet[j-1] = tmp;
-            }
-        }
-    }
+
+void max_heapify(int *vet, int pai, int n){
+	int aux;
+	int filho1 = (2*pai)+1, filho2 = (2*pai)+2, escolhido;
+	if(filho1 >= n) return;
+	else if(filho2 >= n){
+		if(vet[filho1] > vet[pai]){
+			aux = vet[filho1];
+			vet[filho1] = vet[pai];
+			vet[pai] = aux;
+			max_heapify(vet, filho1, n);
+		}
+	}
+	else if(vet[filho1] > vet[pai] || vet[filho2] > vet[pai]){
+		if(vet[filho2] > vet[filho1]){
+			escolhido = filho2;
+		}
+		else escolhido = filho1;
+		aux = vet[escolhido];
+		vet[escolhido] = vet[pai];
+		vet[pai] = aux;
+		max_heapify(vet, escolhido, n);
+	}
 }
+
+void heap_sort(int *vet, int n){	
+	int pai = (int)((n-1)/2); 
+	for(int i = pai; i >= 0; i--){
+		max_heapify(vet, i, n);
+	}
+	int aux;
+	int u = n-1;
+	while(u > 0){
+		aux = vet[u];
+		vet[u] = vet[0];
+		vet[0] = aux;
+		max_heapify(vet, 0, u--);
+	}
+}
+
+void radixsort(int vetor[], int tamanho) {
+    int i;
+    int *b;
+    int maior = vetor[0];
+    int exp = 1;
+
+    b = (int *)calloc(tamanho, sizeof(int));
+
+    for (i = 0; i < tamanho; i++) {
+        if (vetor[i] > maior)
+    	    maior = vetor[i];
+    }
+
+    while (maior/exp > 0) {
+        int bucket[10] = { 0 };
+    	for (i = 0; i < tamanho; i++)
+    	    bucket[(vetor[i] / exp) % 10]++;
+    	for (i = 1; i < 10; i++)
+    	    bucket[i] += bucket[i - 1];
+    	for (i = tamanho - 1; i >= 0; i--)
+    	    b[--bucket[(vetor[i] / exp) % 10]] = vetor[i];
+    	for (i = 0; i < tamanho; i++)
+    	    vetor[i] = b[i];
+    	exp *= 10;
+    }
+
+    free(b);
+}
+
+
+
 
 void merge_sort(int* vet,int ini,int fim){
     if(ini >= fim) return;
@@ -122,10 +182,11 @@ void cpy_vet(int* vet1,int* vet2,int n){
     }
 }
 
-int main(){
+int main(int argc, char *argv[]){
+    
     srand(42);
 
-    const int n = 1000000;
+    const int n = atoi(argv[1]);
     int* vet = (int*)malloc(sizeof(int)*n);
 
     for(int i=0;i<n;i++){
@@ -135,7 +196,7 @@ int main(){
     int* unord = (int*)malloc(sizeof(int)*n);;
 
     cpy_vet(unord,vet,n);
-    bubble_sort(unord,n);
+    radixsort(unord,n);
     clean_cache();
 
     cpy_vet(unord,vet,n);
@@ -143,7 +204,7 @@ int main(){
     clean_cache();
 
     cpy_vet(unord,vet,n);
-    counting_sort(unord,n);
+    heap_sort(unord,n);
     clean_cache();
 
     cpy_vet(unord,vet,n);
