@@ -139,28 +139,43 @@ void cpy_vet(int* vet1,int* vet2,int n){
     }
 }
 
-
+int next(int n){
+    n /= 10000;
+    n *= 10000;
+    n+=10000;
+    return n;
+}
 
 int main(){
     srand(42);
-    for(int n=1;n<=2000001;n+=10000){
-        int* vet = (int*)malloc(sizeof(int)*n);
+    const int maxN = 2000000;
+    const int maxK = 1e9;
 
-        for(int i=0;i<n;i++){
-            vet[i] = rand()%1000000000;
-        }
+    int* vet = (int*)malloc(sizeof(int)*maxN);
+    for(int i=0;i<maxN;i++){
+        vet[i] = rand()%maxK;
+    }
+    vet[0] = maxK;
+    vet[1] = 0;
+
+    for(int n=10;n<=maxN;n=next(n)){
+        int* unord = (int*)malloc(sizeof(int)*n);
+
+        cpy_vet(unord,vet,n);
+        
 
         clock_t begin = clock();
         //bubble_sort(vet,n);
         //merge_sort(vet,0,n-1);
-        quicksort(vet,0,n-1);
-        //counting_sort(vet,n);
+        //quicksort(vet,0,n-1);
+        counting_sort(unord,n);
         clock_t end = clock();
         double time_spent = (double)(end - begin) / CLOCKS_PER_SEC;
         printf("%d %lf\n", n,time_spent);
-        free(vet);
+        free(unord);
     }
-    
+
+    free(vet);
     //clean_cache();
     
     //cpy_vet(unord,vet,n);
