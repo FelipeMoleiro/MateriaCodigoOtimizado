@@ -1,7 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-
-#define time 1000
+#include <time.h>
 
 void spend_time(int n){
     int k = 0;
@@ -144,35 +143,41 @@ void cpy_vet(int* vet1,int* vet2,int n){
 
 int main(){
     srand(42);
+    for(int n=1;n<=100001;n+=10000){
+        int* vet = (int*)malloc(sizeof(int)*n);
 
-    const int n = 1000000;
-    int* vet = (int*)malloc(sizeof(int)*n);
+        for(int i=0;i<n;i++){
+            vet[i] = rand()%1000000000;
+        }
 
-    for(int i=0;i<n;i++){
-        vet[i] = rand()%RAND_MAX;
+        clock_t begin = clock();
+        //bubble_sort(vet,n);
+        //merge_sort(vet,0,n-1);
+        //quicksort(vet,0,n-1);
+        counting_sort(vet,n);
+        clock_t end = clock();
+        double time_spent = (double)(end - begin) / CLOCKS_PER_SEC;
+        printf("%d %lf\n", n,time_spent);
+        free(vet);
     }
-
-    int* unord = (int*)malloc(sizeof(int)*n);;
-
-    //cpy_vet(unord,vet,n);
-    //bubble_sort(unord,n);
+    
     //clean_cache();
     
-    cpy_vet(unord,vet,n);
-    merge_sort(unord,0,n-1);
-    clean_cache();
+    //cpy_vet(unord,vet,n);
+    //merge_sort(unord,0,n-1);
+    //clean_cache();
 
-    cpy_vet(unord,vet,n);
-    counting_sort(unord,n);
-    clean_cache();
+    //cpy_vet(unord,vet,n);
+    //counting_sort(unord,n);
+    //clean_cache();
 
-    cpy_vet(unord,vet,n);
-    quicksort(unord,0,n-1);
+    //cpy_vet(unord,vet,n);
+    //quicksort(unord,0,n-1);
 
 
     //print_vet(vet,n);
-    free(vet);
-    free(unord);
+    
+    //free(unord);
 
     return 0;
 }
