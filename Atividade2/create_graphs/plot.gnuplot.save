@@ -1,0 +1,5 @@
+set autoscale
+set terminal png size 1024,768#set output 'merge.png'
+#set title "Merge Sort"
+#set style line 1 linecolor rgb '#ff3300'
+plot "merge2.txt" with line
