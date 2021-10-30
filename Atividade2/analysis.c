@@ -145,7 +145,7 @@ void cpy_vet(int* vet1,int* vet2,int n){
 int main(){
     srand(42);
 
-    const int n = 1000000;
+    const int n = 1e6;
     int* vet = (int*)malloc(sizeof(int)*n);
 
     for(int i=0;i<n;i++){
@@ -159,14 +159,17 @@ int main(){
     //clean_cache();
     
     cpy_vet(unord,vet,n);
+    clean_cache();
     merge_sort(unord,0,n-1);
-    clean_cache();
+    
 
     cpy_vet(unord,vet,n);
+    clean_cache();
     counting_sort(unord,n);
-    clean_cache();
+
 
     cpy_vet(unord,vet,n);
+    clean_cache();
     quicksort(unord,0,n-1);
 
 

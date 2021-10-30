@@ -3,14 +3,14 @@ digraph {
 	node [fontcolor=white, fontname=Arial, height=0, shape=box, style=filled, width=0];
 	edge [fontname=Arial];
 	1 [color="#ff0000", fontcolor="#ffffff", fontsize="10.00", label="main\n100.00%\n(0.00%)"];
-	1 -> 2 [arrowsize="0.96", color="#f25302", fontcolor="#f25302", fontsize="10.00", label="91.53%\n1×", labeldistance="3.66", penwidth="3.66"];
-	1 -> 3 [arrowsize="0.35", color="#0d2379", fontcolor="#0d2379", fontsize="10.00", label="5.05%\n1×", labeldistance="0.50", penwidth="0.50"];
-	1 -> 4 [arrowsize="0.35", color="#0d1776", fontcolor="#0d1776", fontsize="10.00", label="2.46%\n1×", labeldistance="0.50", penwidth="0.50"];
-	1 -> 5 [arrowsize="0.35", color="#0d1074", fontcolor="#0d1074", fontsize="10.00", label="0.68%\n2×", labeldistance="0.50", penwidth="0.50"];
-	2 [color="#f25302", fontcolor="#ffffff", fontsize="10.00", label="counting_sort\n91.53%\n(91.53%)\n1×"];
-	3 [color="#0d2379", fontcolor="#ffffff", fontsize="10.00", label="quicksort\n5.05%\n(5.05%)\n1333615×"];
-	3 -> 3 [arrowsize="0.35", color="#0d2379", fontcolor="#0d2379", fontsize="10.00", label="1333614×", labeldistance="0.50", penwidth="0.50"];
-	4 [color="#0d1776", fontcolor="#ffffff", fontsize="10.00", label="merge_sort\n2.46%\n(2.46%)\n1999999×"];
-	4 -> 4 [arrowsize="0.35", color="#0d1776", fontcolor="#0d1776", fontsize="10.00", label="1999998×", labeldistance="0.50", penwidth="0.50"];
-	5 [color="#0d1074", fontcolor="#ffffff", fontsize="10.00", label="clean_cache\n0.68%\n(0.68%)\n2×"];
+	1 -> 2 [arrowsize="0.95", color="#f15a02", fontcolor="#f15a02", fontsize="10.00", label="90.86%\n1×", labeldistance="3.63", penwidth="3.63"];
+	1 -> 3 [arrowsize="0.35", color="#0d257a", fontcolor="#0d257a", fontsize="10.00", label="5.53%\n1×", labeldistance="0.50", penwidth="0.50"];
+	1 -> 4 [arrowsize="0.35", color="#0d1876", fontcolor="#0d1876", fontsize="10.00", label="2.57%\n1×", labeldistance="0.50", penwidth="0.50"];
+	1 -> 5 [arrowsize="0.35", color="#0d1074", fontcolor="#0d1074", fontsize="10.00", label="0.90%\n3×", labeldistance="0.50", penwidth="0.50"];
+	2 [color="#f15a02", fontcolor="#ffffff", fontsize="10.00", label="counting_sort\n90.86%\n(90.86%)\n1×"];
+	3 [color="#0d257a", fontcolor="#ffffff", fontsize="10.00", label="quicksort\n5.53%\n(5.53%)\n1333615×"];
+	3 -> 3 [arrowsize="0.35", color="#0d257a", fontcolor="#0d257a", fontsize="10.00", label="1333614×", labeldistance="0.50", penwidth="0.50"];
+	4 [color="#0d1876", fontcolor="#ffffff", fontsize="10.00", label="merge_sort\n2.57%\n(2.57%)\n1999999×"];
+	4 -> 4 [arrowsize="0.35", color="#0d1876", fontcolor="#0d1876", fontsize="10.00", label="1999998×", labeldistance="0.50", penwidth="0.50"];
+	5 [color="#0d1074", fontcolor="#ffffff", fontsize="10.00", label="clean_cache\n0.90%\n(0.90%)\n3×"];
 }

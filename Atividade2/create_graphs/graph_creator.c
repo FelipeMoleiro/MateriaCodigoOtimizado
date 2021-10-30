@@ -23,41 +23,35 @@ void bubble_sort(int* vet,int n){
     }
 }
 
-void merge_sort(int* vet,int ini,int fim){
+void merge_sort(int* vet,int ini,int fim,int* aux){
     if(ini >= fim) return;
 
     //printf("%d %d\n", ini,fim);
 
     int meio = (ini+fim)/2.0;
 
-    merge_sort(vet,ini,meio);
-    merge_sort(vet,meio+1,fim);
+    merge_sort(vet,ini,meio,aux);
+    merge_sort(vet,meio+1,fim,aux);
 
-    int* tmp = (int*)malloc((fim-ini+1)*sizeof(int));
     int i=ini;
     int j = meio+1;
     int indTmp = 0;
     while(i <= meio && j <= fim){
-        if(vet[i] <= vet[j]) tmp[indTmp++] = vet[i++];
-        else tmp[indTmp++] = vet[j++];
+        if(vet[i] <= vet[j]) aux[ini+indTmp++] = vet[i++];
+        else aux[ini+indTmp++] = vet[j++];
     }
 
     while(i <= meio){
-        tmp[indTmp++] = vet[i++];
+        aux[ini+indTmp++] = vet[i++];
     }
 
     while(j <= fim){
-        tmp[indTmp++] = vet[j++];
+        aux[ini+indTmp++] = vet[j++];
     }
 
-    for(int k=0;k<(fim-ini+1);k++){
-        vet[ini+k] = tmp[k];
-        //spend_time(time);
+    for(int k=ini;k<=fim;k++){
+        vet[k] = aux[k];
     }
-    free(tmp);
-
-    
-    
 }
 
 void counting_sort(int* vet,int n){
@@ -148,7 +142,7 @@ int next(int n){
 
 int main(){
     srand(42);
-    const int maxN = 2000000;
+    const int maxN = 200000;
     const int maxK = 1e9;
 
     int* vet = (int*)malloc(sizeof(int)*maxN);
@@ -160,19 +154,20 @@ int main(){
 
     for(int n=10;n<=maxN;n=next(n)){
         int* unord = (int*)malloc(sizeof(int)*n);
+        int* aux = (int*)malloc(sizeof(int)*n);
 
         cpy_vet(unord,vet,n);
         
 
         clock_t begin = clock();
-        //bubble_sort(vet,n);
-        //merge_sort(vet,0,n-1);
-        //quicksort(vet,0,n-1);
-        counting_sort(unord,n);
+        merge_sort(unord,0,n-1,aux);
+        //counting_sort(unord,n);
+        //quicksort(unord,0,n-1);
         clock_t end = clock();
         double time_spent = (double)(end - begin) / CLOCKS_PER_SEC;
         printf("%d %lf\n", n,time_spent);
         free(unord);
+        free(aux);
     }
 
     free(vet);
