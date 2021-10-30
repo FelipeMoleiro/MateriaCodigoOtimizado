@@ -143,7 +143,7 @@ void cpy_vet(int* vet1,int* vet2,int n){
 
 int main(){
     srand(42);
-    for(int n=1;n<=100001;n+=10000){
+    for(int n=1;n<=2000001;n+=10000){
         int* vet = (int*)malloc(sizeof(int)*n);
 
         for(int i=0;i<n;i++){
@@ -153,8 +153,8 @@ int main(){
         clock_t begin = clock();
         //bubble_sort(vet,n);
         //merge_sort(vet,0,n-1);
-        //quicksort(vet,0,n-1);
-        counting_sort(vet,n);
+        quicksort(vet,0,n-1);
+        //counting_sort(vet,n);
         clock_t end = clock();
         double time_spent = (double)(end - begin) / CLOCKS_PER_SEC;
         printf("%d %lf\n", n,time_spent);
