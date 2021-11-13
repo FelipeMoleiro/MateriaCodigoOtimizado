@@ -1,0 +1,23 @@
+-0.169075164
+-0.169059907
+
+ Performance counter stats for './program 50000000':
+
+          1.963,53 msec task-clock:u              #    1,000 CPUs utilized          
+                 0      context-switches:u        #    0,000 /sec                   
+                 0      cpu-migrations:u          #    0,000 /sec                   
+                54      page-faults:u             #   27,501 /sec                   
+     6.758.805.181      cycles:u                  #    3,442 GHz                    
+     4.278.441.533      stalled-cycles-frontend:u #   63,30% frontend cycles idle   
+     9.200.137.095      instructions:u            #    1,36  insn per cycle         
+                                                  #    0,47  stalled cycles per insn
+        50.028.920      branches:u                #   25,479 M/sec                  
+             2.446      branch-misses:u           #    0,00% of all branches        
+
+       1,964490083 seconds time elapsed
+
+       1,962467000 seconds user
+       0,000000000 seconds sys
+
+
+
